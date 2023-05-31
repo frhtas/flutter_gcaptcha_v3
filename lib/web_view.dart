@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gcaptcha_v3/constants.dart';
 import 'package:flutter_gcaptcha_v3/recaptca_config.dart';
-import 'package:webview_flutter_plus/webview_flutter_plus.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ReCaptchaWebView extends StatelessWidget {
   const ReCaptchaWebView(
@@ -26,7 +26,7 @@ class ReCaptchaWebView extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: WebViewPlus(
+      child: WebView(
         backgroundColor: webViewColor,
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (controller) {
@@ -59,8 +59,8 @@ class ReCaptchaWebView extends StatelessWidget {
     };
   }
 
-  void _initializeReadyJs(WebViewPlusController controller) {
-    (value) => controller.webViewController.runJavascript(
+  void _initializeReadyJs(WebViewController controller) {
+    (value) => controller.runJavascript(
         '${AppConstants.readyCaptcha}("${RecaptchaHandler.instance.siteKey}")');
 
     RecaptchaHandler.executeV3();
