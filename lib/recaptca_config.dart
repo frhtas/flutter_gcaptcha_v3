@@ -19,11 +19,14 @@ class RecaptchaHandler {
   static RecaptchaHandler get instance => _instance ??= RecaptchaHandler._();
 
   /// updates the Web view controller
-  updateController({required WebViewController controller}) => _instance?.controller = controller;
+  updateController({required WebViewController controller}) =>
+      _instance?.controller = controller;
 
   /// setups the data site key
-  setupSiteKey({required String dataSiteKey}) => _instance?._siteKey = dataSiteKey;
+  setupSiteKey({required String dataSiteKey}) =>
+      _instance?._siteKey = dataSiteKey;
 
   /// Executes and call the  recaptcha API
-  static executeV3() => _instance?.controller.runJavascript('${AppConstants.readyCaptcha}("${_instance?._siteKey}")');
+  static executeV3() => _instance?.controller
+      .runJavaScript('${AppConstants.readyCaptcha}("${_instance?._siteKey}")');
 }
