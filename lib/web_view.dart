@@ -29,6 +29,7 @@ class ReCaptchaWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(webViewColor ?? Colors.transparent)
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageFinished: (url) {
@@ -54,10 +55,9 @@ class ReCaptchaWebView extends StatelessWidget {
     //createLocalUrl(controller);
     controller!.loadRequest(Uri.parse(url));
 
-    return Container(
+    return SizedBox(
       height: height,
       width: width,
-      color: webViewColor,
       child: WebViewWidget(
         controller: controller!,
       ),
