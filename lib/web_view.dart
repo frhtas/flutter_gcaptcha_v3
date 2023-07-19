@@ -30,7 +30,12 @@ class ReCaptchaWebView extends StatelessWidget {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
-        NavigationDelegate(),
+        NavigationDelegate(
+          onPageFinished: (url) {
+            Future.delayed(const Duration(seconds: 1))
+                .then((value) => _initializeReadyJs(controller!));
+          },
+        ),
       )
       ..addJavaScriptChannel(
         AppConstants.readyJsName,
@@ -48,9 +53,6 @@ class ReCaptchaWebView extends StatelessWidget {
 
     //createLocalUrl(controller);
     controller!.loadRequest(Uri.parse(url));
-
-    Future.delayed(const Duration(seconds: 1))
-        .then((value) => _initializeReadyJs(controller!));
 
     return Container(
       height: height,
