@@ -66,6 +66,7 @@ class ReCaptchaWebView extends StatelessWidget {
     try {
       (value) => controller.runJavaScript(
           '${AppConstants.readyCaptcha}("${RecaptchaHandler.instance.siteKey}")');
+      RecaptchaHandler.executeV3();
     } on Exception catch (_) {
       onError(_.toString());
     }
