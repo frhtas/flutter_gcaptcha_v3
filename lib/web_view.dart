@@ -52,9 +52,10 @@ class ReCaptchaWebView extends StatelessWidget {
     Future.delayed(const Duration(seconds: 1))
         .then((value) => _initializeReadyJs(controller!));
 
-    return SizedBox(
+    return Container(
       height: height,
       width: width,
+      color: webViewColor,
       child: WebViewWidget(
         controller: controller!,
       ),
@@ -65,7 +66,6 @@ class ReCaptchaWebView extends StatelessWidget {
     try {
       (value) => controller.runJavaScript(
           '${AppConstants.readyCaptcha}("${RecaptchaHandler.instance.siteKey}")');
-      RecaptchaHandler.executeV3();
     } on Exception catch (_) {
       onError(_.toString());
     }
