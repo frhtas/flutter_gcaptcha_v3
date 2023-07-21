@@ -55,7 +55,8 @@ class ReCaptchaWebView extends StatelessWidget {
     //createLocalUrl(controller);
     controller!.loadRequest(Uri.parse(url));
 
-    return SizedBox(
+    return Container(
+      color: webViewColor ?? Colors.transparent,
       height: height,
       width: width,
       child: WebViewWidget(
